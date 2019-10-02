@@ -3,12 +3,14 @@ class CliApp
     def run
         system "clear"
         welcome_message
-        if traveler_or_airline == "Traveler"
+        if traveler_or_admin == "Traveler"
             traveler = get_traveler
             set_current_traveler(traveler)
             traveler_menu
         else
-        end traveler_or_airline == ""
+            enter_admin_password
+            admin_menu
+        end 
     end
     
     def welcome_message
@@ -209,7 +211,9 @@ class CliApp
         end
     end 
 
-    def admin_menu
+
+
+    # def admin_menu
 
        
 
