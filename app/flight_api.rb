@@ -1,3 +1,4 @@
+require_relative "../config.rb"
 class FlightApi
 
 def self.get_flight_by_destination
