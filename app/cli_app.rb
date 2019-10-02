@@ -75,7 +75,9 @@ class CliApp
         when "View my flights"
             list_my_flights
         when "Purchase a flight ticket"
-            purchase_ticket
+
+            # purchase_ticket
+            purchase_menu
         when "Return a ticket"
             return_ticket
         when "Leave"
@@ -111,13 +113,36 @@ class CliApp
     end
 
     # (Create) Buy a ticket for any flight
-    def purchase_ticket
+    def purchase_ticket(destination)
         prompt = TTY::Prompt.new
-        flight = prompt.select("Select the flight you would like to buy a ticket for:", list_all_flights)
-        # binding.pry
-        Ticket.create(traveler_id: @current_traveler.id, flight_id: flight.id)
+
+        if Flight.where(destination: destination).count > 0
+            flight = prompt.select("Select the flight you would like to buy a ticket for:", Flight.where(destination: destination))
+            # binding.pry
+            Ticket.create(traveler_id: @current_traveler.id, flight_id: flight.id)
+        else
+            option = "Go Back"
+            prompt.select("No Flights from NYC to #{destination}", option)
+        end
+        
     end
         
+    def purchase_menu
+        airport = choose_origin
+        destination = choose_destination
+        purchase_ticket(destination)
+    end
+
+    def choose_origin
+        prompt = TTY::Prompt.new
+        airport = prompt.select("Please Choose Your Departing Airport:", %w(JFK Laguardia))
+    end
+
+    def choose_destination
+        prompt = TTY::Prompt.new
+        destination = prompt.ask("Please Choose Your Desired Destination:")
+    end
+
     # def set_current_airline(airline)
     #     @current_airline = airline
     # end
