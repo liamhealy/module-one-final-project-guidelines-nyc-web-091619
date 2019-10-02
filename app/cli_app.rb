@@ -3,7 +3,7 @@ class CliApp
     def run
         system "clear"
         welcome_message
-
+        traveler_or_airline
         traveler = get_traveler
         set_current_traveler(traveler)
         # binding.pry 
@@ -51,6 +51,15 @@ class CliApp
 
     #     Flight.find_or_create_by(airline)
     # end
+
+
+    
+    def traveler_or_airline
+        prompt = TTY::Prompt.new
+        both_interface = ["Traveler", "Airline"]
+        choose = prompt.select("Sign-in As:", both_interface)
+        return choose
+    end
 
     def get_traveler
         puts "Please Enter Your Name: "
