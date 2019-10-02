@@ -59,7 +59,7 @@ class CliApp
 
     def get_action
         prompt = TTY::Prompt.new
-        all_actions = ["View my flights", "Purchase a flight ticket", "Leave"]
+        all_actions = ["View my flights", "Purchase a flight ticket", "Return a ticket", "Leave"]
         action = prompt.select("Menu Options:", all_actions)
         return action
     end
@@ -70,6 +70,8 @@ class CliApp
             list_my_flights
         when "Purchase a flight ticket"
             purchase_ticket
+        when "Return a ticket"
+            return_ticket
         when "Leave"
             system "clear"
             return
@@ -92,7 +94,7 @@ class CliApp
         end
     end
 
-    # (Read) List all of the flights that exist
+    # (Read) List all of the flights in existence
     def list_all_flights
         flights = Flight.all.map do |flight|
             # binding.pry
@@ -142,7 +144,15 @@ class CliApp
 
 
 
-
-
+    
+    #(Delete) Removing a ticket the user bought
+    def return_ticket
+        my_tickets = @current_traveler.flights.map do |flight|
+            flight
+        end
+        prompt = TTY::Prompt.new
+        ticket = prompt.select("Select the ticket you would like to return:", @current_traveler.tickets)
+        # Ticket.delete()
+    end
 
 end #end of CliApp
