@@ -8,13 +8,14 @@ class CliApp
             set_current_traveler(traveler)
             traveler_menu
         else
-        end
+        end traveler_or_airline == ""
     end
     
     def welcome_message
         create_pastel("GotFlights?")
         puts "Welcome to Got Flights!"
     end
+
 
     def create_pastel(message)
         pastel = Pastel.new
@@ -27,8 +28,8 @@ class CliApp
         prompt.select(prompt_message, options)
     end
 
-    def traveler_or_airline
-        choose = create_select_prompt("Sign-in As:", ["Traveler", "Airline"])
+    def traveler_or_admin
+        choose = create_select_prompt("Sign-in As:", ["Traveler", "Admin"])
     end
 
     ### ------------------- Traveler
@@ -58,7 +59,7 @@ class CliApp
     end
     
     def get_action
-        action = create_select_prompt("Menu Options:", ["View my flights", "Purchase a flight ticket", "Return a ticket", "Leave"])
+        action = create_select_prompt("Menu Options:", ["View my flights", "Purchase a flight ticket", "Return a ticket", "Return Home", "Exit GotFlights"])
     end
 
     def purchase_menu
@@ -85,9 +86,12 @@ class CliApp
             purchase_menu
         when "Return a ticket"
             return_ticket
-        when "Leave"
+        when "Return Home"
             system "clear"
-            return
+            run 
+        when "Exit GotFlights"
+            system "clear"
+            exit
         end
         traveler_menu
     end
@@ -96,7 +100,7 @@ class CliApp
     def list_my_flights
         my_flights = @current_traveler.flights.map do |flight|
             # binding.pry
-            "- Flight Id: #{flight.id}, Airline: #{flight.airline}, Origin: #{flight.origin}, Destination: #{flight.destination}"
+            "- Flight Id: #{flight.id}, Origin: #{flight.origin}, Destination: #{flight.destination}"
         end
         prompt = TTY::Prompt.new
         if my_flights.count > 0 
@@ -106,6 +110,8 @@ class CliApp
             prompt.select("You have not purchased any tickets for any flights.", alert)
         end
     end
+
+    
     
     # (Read) List all of the flights in existence
     def list_all_flights
@@ -158,12 +164,7 @@ class CliApp
     #     end
     # end
 
-    # def get_airline_admin
-    #     puts "Please Enter Your Airline: "
-    #     airline = gets.chomp
-
-    #     Flight.find_or_create_by(airline)
-    # end
+    
     
     # def set_current_airline(airline)
     #     @current_airline = airline
@@ -195,6 +196,22 @@ class CliApp
 
     # end
 
+    ###------------------- Airport Admin
+    
+    def enter_admin_password
+        prompt = TTY::Prompt.new 
+        password =  prompt.mask("Please Enter Your Admin Password:")
+        if password == "password"
+            admin_menu
+        else
+            puts "Incorrect Password. Abort!"
+            run
+        end
+    end 
+
+    def admin_menu
+
+       
 
 
     
