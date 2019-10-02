@@ -12,7 +12,13 @@ class CliApp
         # execute_action(action)
     end
 
+    def update_traveler
+        traveler = Traveler.find_or_create_by(name: @current_traveler.name)
+        @current_traveler = traveler
+    end
+
     def traveler_menu
+        update_traveler
         system "clear"
         pastel = Pastel.new
         font = TTY::Font.new
@@ -86,7 +92,7 @@ class CliApp
             "- Flight Id: #{flight.id}, Airline: #{flight.airline}, Origin: #{flight.origin}, Destination: #{flight.destination}"
         end
         prompt = TTY::Prompt.new
-        if my_flights.count >= 1
+        if my_flights.count > 0 
             prompt.select("My Flights:", my_flights)
         else
             alert = "You have not purchased any tickets for any flights."
@@ -152,7 +158,7 @@ class CliApp
         end
         prompt = TTY::Prompt.new
         ticket = prompt.select("Select the ticket you would like to return:", @current_traveler.tickets)
-        # Ticket.delete()
+        Ticket.delete(ticket)
     end
 
 end #end of CliApp
