@@ -22,11 +22,32 @@ class CliApp
     end
 
     def welcome_message
+<<<<<<< Updated upstream
         # puts "Welcome"
         pastel = Pastel.new
         font = TTY::Font.new
         puts pastel.red(font.write("GotFlights?"))
+=======
+        puts "Welcome to Got Flights!"
+>>>>>>> Stashed changes
     end
+
+    # def traveler_or_airline
+    #     puts "Are you a traveler or Airline Admin?"
+    #     input = gets.chomp
+    #     if input == "traveler"
+    #         get_traveler
+    #     else
+    #         get_airline_admin
+    #     end
+    # end
+
+    # def get_airline_admin
+    #     puts "Please Enter Your Airline: "
+    #     airline = gets.chomp
+
+    #     Flight.find_or_create_by(airline)
+    # end
 
     def get_traveler
         puts "Please Enter Your Name: "
@@ -39,6 +60,7 @@ class CliApp
         @current_traveler = traveler
     end
 
+<<<<<<< Updated upstream
     def get_action
         prompt = TTY::Prompt.new
         all_actions = ["View my flights", "Purchase a flight ticket", "Leave"]
@@ -87,8 +109,37 @@ class CliApp
         Ticket.create(traveler_id: @current_traveler.id, flight_id: flight.id)
     end
         
+=======
+    # def set_current_airline(airline)
+    #     @current_airline = airline
+    # end
 
+    # def get_traveler_destination
+    #     puts "Where is you going?"
+    #     travel_destination = gets.chomp
 
+    #     Traveler.destination = travel_destination
+    # end
+
+    # def view_origin(origin = "NYC")
+    #     Traveler.origin
+    # end
+    
+    # def update_destination
+    #     puts "Where is you going NOW?"
+    #     new_destination = gets.chomp
+
+    #     Traveler.destination = new_destination
+    # end
+
+    # def cancel_trip_to
+    #     puts "Please Enter Destination to Cancel: "
+    #     cancel_destination = gets.chomp
+>>>>>>> Stashed changes
+
+    #     Traveler.destination.find_by(cancel_destination).delete
+
+    # end
 
 
 
