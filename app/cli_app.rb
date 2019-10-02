@@ -22,14 +22,11 @@ class CliApp
     end
 
     def welcome_message
-<<<<<<< Updated upstream
         # puts "Welcome"
         pastel = Pastel.new
         font = TTY::Font.new
         puts pastel.red(font.write("GotFlights?"))
-=======
         puts "Welcome to Got Flights!"
->>>>>>> Stashed changes
     end
 
     # def traveler_or_airline
@@ -60,7 +57,6 @@ class CliApp
         @current_traveler = traveler
     end
 
-<<<<<<< Updated upstream
     def get_action
         prompt = TTY::Prompt.new
         all_actions = ["View my flights", "Purchase a flight ticket", "Leave"]
@@ -88,7 +84,12 @@ class CliApp
             "- Flight Id: #{flight.id}, Airline: #{flight.airline}, Origin: #{flight.origin}, Destination: #{flight.destination}"
         end
         prompt = TTY::Prompt.new
-        prompt.select("My Flights:", my_flights)
+        if my_flights.count >= 1
+            prompt.select("My Flights:", my_flights)
+        else
+            alert = "You have not purchased any tickets for any flights."
+            prompt.select("You have not purchased any tickets for any flights.", alert)
+        end
     end
 
     # (Read) List all of the flights that exist
@@ -109,7 +110,6 @@ class CliApp
         Ticket.create(traveler_id: @current_traveler.id, flight_id: flight.id)
     end
         
-=======
     # def set_current_airline(airline)
     #     @current_airline = airline
     # end
@@ -135,7 +135,6 @@ class CliApp
     # def cancel_trip_to
     #     puts "Please Enter Destination to Cancel: "
     #     cancel_destination = gets.chomp
->>>>>>> Stashed changes
 
     #     Traveler.destination.find_by(cancel_destination).delete
 
