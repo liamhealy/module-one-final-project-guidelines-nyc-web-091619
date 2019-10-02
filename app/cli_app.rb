@@ -1,5 +1,7 @@
-class CliApp
+require_relative 'flight_api'
 
+class CliApp
+    
     def run
         system "clear"
         welcome_message
@@ -199,6 +201,18 @@ class CliApp
     # end
 
     ###------------------- Airport Admin
+
+    def admin_menu
+        # enter_admin_password
+        system "clear"
+        create_pastel("Menu:")
+        action = get_admin
+        admin_action(action)
+    end
+
+    def get_admin
+        action = create_select_prompt("Menu Options:", ["View all flights", "View all travelers", "Update Flight Informtion", "Cancel Flights", "Ban Passengers", "Return Home", "Exit GotFlights"])
+    end
     
     def enter_admin_password
         prompt = TTY::Prompt.new 
@@ -206,16 +220,60 @@ class CliApp
         if password == "password"
             admin_menu
         else
-            puts "Incorrect Password. Abort!"
-            run
+            choice = ["Retry", "Exit GotFlights"]
+            option = create_select_prompt("Incorrect Password. What Would You Like to Do?", choice)
+                if option == "Retry"
+                    run
+                else
+                    exit
+                end
+
         end
     end 
 
 
 
-    # def admin_menu
+    def admin_action(action)
+        # flights = Flight.all
+        # puts flights
+        case action
+        when "View all flights"
+            see_all_flights
+        when "View all travelers"
+            list_all_travelers
+        when "Update Flight Information"
+            # update_flights
+        when "Cancel Flights"
+            # cancel_flights
+        when "Ban Passengers"
+            # ban_passenger
+        when "Return Home"
+            system "clear"
+            run 
+        when "Exit GotFlights"
+            system "clear"
+            exit
+        end
+        admin_menu
+    end
 
-       
+    def see_all_flights
+
+        all_flights = Flight.all.map do |flight|
+            "- Flight Id: #{flight.id}, Origin: #{flight.origin}, Destination: #{flight.destination}"
+        end
+        prompt = TTY::Prompt.new
+        if all_flights.count != 0
+            prompt.select("Flights:", all_flights)
+        
+        end
+    end
+
+    # def list_all_travelers 
+    #     travelers = Traveler.all
+    #     puts travelers
+    # end
+
 
 
     
