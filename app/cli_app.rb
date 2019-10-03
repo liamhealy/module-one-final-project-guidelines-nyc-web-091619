@@ -130,11 +130,16 @@ class CliApp
     # (Create) Buy a ticket for a flight
     def purchase_ticket(destination)
         prompt = TTY::Prompt.new
+        FlightApi.get_flight_by_destination(destination)
+        puts FlightApi.all
+        find_flight = FlightApi.all.find do |flight|
+            flight.destination == destination
+        end
         
-        if Flight.where(destination: destination).count > 0
-            flight = prompt.select("Select the flight you would like to buy a ticket for:", Flight.where(destination: destination))
+        if FlightApi.all.count > 0
+            flight = prompt.select("Select the flight you would like to buy a ticket for:", find_flight)
             # binding.pry
-            Ticket.create(traveler_id: @current_traveler.id, flight_id: flight.id)
+            Ticket.create(traveler_id: @current_traveler.id, flight_id: find_flight.id)
         else
             option = "Go Back"
             prompt.select("No Flights from NYC to #{destination}", option)

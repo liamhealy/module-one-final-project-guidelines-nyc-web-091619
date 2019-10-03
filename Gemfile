@@ -2,6 +2,9 @@
 source "https://rubygems.org"
 
 gem "rake"
+gem 'rest-client'
+gem 'pry'
+gem 'json'
 gem "tty-prompt"
 gem "tty-font"
 gem 'activerecord', '~>5.2.3'
