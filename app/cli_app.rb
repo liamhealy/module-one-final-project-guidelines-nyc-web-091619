@@ -136,15 +136,16 @@ class CliApp
     
     # (Create) Buy a ticket for a flight
     def purchase_ticket(date, destination)
+        flights_from_api = {}
         prompt = TTY::Prompt.new
         FlightApi.get_flight_by_destination(date, destination)
         # puts FlightApi.all
         find_flight = FlightApi.all.find do |flight|
             flight.destination == destination
         end
-        
         if FlightApi.all.count > 0
-            flight = prompt.select("Select the flight you would like to buy a ticket for:", find_flight)
+            flights_from_api[find_flight] = "Flight id: #{find_flight.id}, Going to: #{find_flight.destination} from #{find_flight.origin} on #{find_flight.departure}"
+            flight = prompt.select("Select the flight you would like to buy a ticket for:", flights_from_api[find_flight])
             # binding.pry
             Ticket.create(traveler_id: @current_traveler.id, flight_id: find_flight.id)
         else
@@ -240,35 +241,59 @@ class CliApp
     end
 
     def see_all_travelers 
-            all_travelers = Traveler.all.map do |traveler|
-            "-Traveler Id: #{traveler.id}, Name: #{traveler.name}-"
-            end
-            prompt = TTY::Prompt.new
-            if all_travelers.count != 0
+        all_travelers = Traveler.all.map do |traveler|
+            "Traveler Id: #{traveler.id}, Name: #{traveler.name}"
+        end
+        prompt = TTY::Prompt.new
+        if all_travelers.count != 0
             prompt.select("Travelers:", all_travelers)
-            end
-        
-            travelers = Traveler.all
-            puts travelers
+        end
+        travelers = Traveler.all
+        puts travelers
     end
 
     def update_flights_status
         prompt = TTY::Prompt.new
-        flight = prompt.select("Please Select A Flight to Proceed:", Flight.all)
+        flight_hash = {}
+        Flight.all.each do |flight|
+            flight_hash[flight] = "Flight id: #{flight.id}, Going to #{flight.destination} from #{flight.origin} on #{flight.departure}"
+        end
+        flight = prompt.select("Please Select A Flight to Proceed:", flight_hash.values)
         update = prompt.ask("Status Update:")
-        flight.update(status: update.capitalize)
+        flight_instance = flight_hash.key(flight)
+        flight_instance.update(status: update.capitalize)
     end
 
     def cancel_flights
         prompt = TTY::Prompt.new
-        cancel = prompt.select("Please Select the Flight to be canceled:", Flight.all)
-        cancel.delete
+        flight_hash = {}
+        Flight.all.each do |flight|
+            flight_hash[flight] = "Flight id: #{flight.id}, Going to #{flight.destination} from #{flight.origin} on #{flight.departure}"
+        end
+        cancel = prompt.select("Please Select the Flight to be canceled:", flight_hash.values)
+        flight_instance = flight_hash.key(cancel)
+        Ticket.all.each do |ticket|
+            if ticket.flight_id == flight_instance.id
+                ticket.destroy
+            end
+        end
+        flight_instance.delete
     end
 
     def ban_passengers
         prompt = TTY::Prompt.new
-        ban = prompt.select("Please Select the Passenger to be banned:", Traveler.all)
-        ban.delete
+        traveler_hash = {}
+        Traveler.all.each do |traveler|
+            traveler_hash[traveler] = "Traveler ID: #{traveler.id}, Name: #{traveler.name}"
+        end
+        ban = prompt.select("Please Select the Passenger to be banned:", traveler_hash.values)
+        banned_traveler = traveler_hash.key(ban)
+        Ticket.all.each do |ticket|
+            if ticket.traveler_id == banned_traveler.id
+                ticket.destroy
+            end
+        end
+        banned_traveler.delete
     end
 
 end #end of CliApp
