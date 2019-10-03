@@ -6,23 +6,24 @@
 Our domain model demonstrates the relationship between travelers and their flights through the tickets they purchase.
 
 
-User:
+Traveler:
 - Name
 - SSN last 4 digits
 
 Flight:
 - Origin
 - Destination
-- Airline
-- Model
-- Ticket price
 - Departure Time
 - Arrival Time
 
-The User and their Flight are connected by the purchase of a ticket.
+The Traveler and their Flight are connected by the purchase of a ticket.
  
-User Stories:
-1. As a traveler, I should be able to enter my information and retrieve all my flight information(multiple seed data).
-2. As a traveler, I should be able to book a flight.
-3. As an operating airline, I should be able to view all travelers booked for a specific flight.
-4. As an operating airline, I should be able to add, delay or cancel my flights.
+Ticket: 
+- traveler_id
+- flight_id
+ 
+### User Stories:
+1. As a traveler, I should be able to enter my name and view flights that I have purchased a ticket for.
+2. As a traveler, I should be able to specify a destination, and purchase a ticket for an available flight.
+3. As an airport administrator, I should be able to view all travelers that have purchased tickets for flights.
+4. As an airport administrator, I should be able to cancel my flights when necessary.
