@@ -63,7 +63,7 @@ class CliApp
     end
     
     def get_action
-        action = create_select_prompt("Menu Options:", ["View my flights", "Purchase a flight ticket", "Return a ticket", "Return Home", "Exit GotFlights"])
+        action = create_select_prompt("Menu Options:", ["View my flights", "Purchase a flight ticket", "Return a ticket", "Update my information", "Return Home", "Exit GotFlights"])
     end
 
     def purchase_menu
@@ -97,6 +97,8 @@ class CliApp
             purchase_menu
         when "Return a ticket"
             return_ticket
+        when "Update my information"
+            update_traveler_information
         when "Return Home"
             system "clear"
             run 
@@ -122,7 +124,15 @@ class CliApp
         end
     end
 
-    
+    def update_traveler_information
+        prompt = TTY::Prompt.new
+        choice = prompt.select("Would you like to change your name?", %w(Yes No))
+        case choice
+        when "Yes"
+            new_name = prompt.ask("Enter your new name here:")
+            @current_traveler.update(name: new_name)
+        end        
+    end
     
     # (Read) List all of the flights in existence
     def list_all_flights
