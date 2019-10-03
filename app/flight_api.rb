@@ -7,13 +7,13 @@ class FlightApi
 
     @@all = []
 
-    def self.get_flight_by_destination(user_destination)
+    def self.get_flight_by_destination(user_date, user_destination)
 
 
-        puts "Welcome to API practice."
-        puts "Here is some flight data from the internet:"
+        # puts "Welcome to API practice."
+        # puts "Here is some flight data from the internet:"
 
-        url = "https://api.flightstats.com/flex/schedules/rest/v1/json/from/JFK/departing/2019/10/5/12?appId=#{ID}&appKey=#{KEY}"
+        url = "https://api.flightstats.com/flex/schedules/rest/v1/json/from/JFK/departing/#{user_date}/12?appId=#{ID}&appKey=#{KEY}"
 
         response = RestClient.get(url)
         response_hash = JSON.parse(response)

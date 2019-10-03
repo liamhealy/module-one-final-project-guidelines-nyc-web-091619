@@ -67,16 +67,28 @@ class CliApp
     end
 
     def purchase_menu
-        airport = choose_origin
+        date = get_date
         destination = choose_destination
-        purchase_ticket(destination)
+        purchase_ticket(date, destination)
     end
     
-    def choose_origin
+    # def choose_origin
+    #     prompt = TTY::Prompt.new
+    #     airport = prompt.select("Please Choose Your Departing Airport:", %w(JFK Laguardia))
+    # end
+
+    def get_date
         prompt = TTY::Prompt.new
-        airport = prompt.select("Please Choose Your Departing Airport:", %w(JFK Laguardia))
+        date = []
+        year = prompt.ask("(Date) Please enter a year:")
+        date << year
+        month = prompt.ask("(Date) Please enter a month:")
+        date << month
+        day = prompt.ask("(Date) Please enter a day:")
+        date << day
+        date.join("/")
     end
-    
+
     def choose_destination
         prompt = TTY::Prompt.new
         destination = prompt.ask("Please Choose Your Desired Destination:")
@@ -110,7 +122,7 @@ class CliApp
         if my_flights.count > 0 
             prompt.select("My Flights:", my_flights)
         else
-            alert = "You have not purchased any tickets for any flights."
+            alert = "Go Back"
             prompt.select("You have not purchased any tickets for any flights.", alert)
         end
     end
@@ -128,10 +140,10 @@ class CliApp
     end
     
     # (Create) Buy a ticket for a flight
-    def purchase_ticket(destination)
+    def purchase_ticket(date, destination)
         prompt = TTY::Prompt.new
-        FlightApi.get_flight_by_destination(destination)
-        puts FlightApi.all
+        FlightApi.get_flight_by_destination(date, destination)
+        # puts FlightApi.all
         find_flight = FlightApi.all.find do |flight|
             flight.destination == destination
         end
@@ -144,7 +156,6 @@ class CliApp
             option = "Go Back"
             prompt.select("No Flights from NYC to #{destination}", option)
         end
-        
     end
     
     #(Delete) Removing a ticket the user bought
