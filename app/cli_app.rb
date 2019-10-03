@@ -71,11 +71,6 @@ class CliApp
         destination = choose_destination
         purchase_ticket(date, destination)
     end
-    
-    # def choose_origin
-    #     prompt = TTY::Prompt.new
-    #     airport = prompt.select("Please Choose Your Departing Airport:", %w(JFK Laguardia))
-    # end
 
     def get_date
         prompt = TTY::Prompt.new
@@ -174,48 +169,6 @@ class CliApp
 
     end
 
-    # def traveler_or_airline
-    #     puts "Are you a traveler or Airline Admin?"
-    #     input = gets.chomp
-    #     if input == "traveler"
-    #         get_traveler
-    #     else
-    #         get_airline_admin
-    #     end
-    # end
-
-    
-    
-    # def set_current_airline(airline)
-    #     @current_airline = airline
-    # end
-    
-    # def get_traveler_destination
-    #     puts "Where is you going?"
-    #     travel_destination = gets.chomp
-    
-    #     Traveler.destination = travel_destination
-    # end
-    
-    # def view_origin(origin = "NYC")
-    #     Traveler.origin
-    # end
-    
-    # def update_destination
-    #     puts "Where is you going NOW?"
-    #     new_destination = gets.chomp
-
-    #     Traveler.destination = new_destination
-    # end
-
-    # def cancel_trip_to
-    #     puts "Please Enter Destination to Cancel: "
-    #     cancel_destination = gets.chomp
-
-    #     Traveler.destination.find_by(cancel_destination).delete
-
-    # end
-
     ###------------------- Airport Admin
 
     def admin_menu
@@ -227,7 +180,7 @@ class CliApp
     end
 
     def get_admin
-        action = create_select_prompt("Menu Options:", ["View all flights", "View all travelers", "Update Flight Informtion", "Cancel Flights", "Ban Passengers", "Return Home", "Exit GotFlights"])
+        action = create_select_prompt("Menu Options:", ["View all flights", "View all travelers", "Update Flight Information", "Cancel Flights", "Ban Passengers", "Return Home", "Exit GotFlights"])
     end
     
     def enter_admin_password
@@ -258,7 +211,7 @@ class CliApp
         when "View all travelers"
             see_all_travelers
         when "Update Flight Information"
-            # update_flights
+            update_flights_status
         when "Cancel Flights"
             cancel_flights
         when "Ban Passengers"
@@ -297,6 +250,13 @@ class CliApp
             puts travelers
     end
 
+    def update_flights_status
+        prompt = TTY::Prompt.new
+        flight = prompt.select("Please Select A Flight to Proceed:", Flight.all)
+        update = prompt.ask("Status Update:")
+        flight.update(status: update.capitalize)
+    end
+
     def cancel_flights
         prompt = TTY::Prompt.new
         cancel = prompt.select("Please Select the Flight to be canceled:", Flight.all)
@@ -308,9 +268,5 @@ class CliApp
         ban = prompt.select("Please Select the Passenger to be banned:", Traveler.all)
         ban.delete
     end
-
-
-
-    
 
 end #end of CliApp

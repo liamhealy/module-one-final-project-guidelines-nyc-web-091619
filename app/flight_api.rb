@@ -31,9 +31,10 @@ class FlightApi
             destination = flight["arrivalAirportFsCode"]
             departure_time = flight["departureTime"]
             arrival_time = flight["arrivalTime"]
+            status = "On-Time"
 
             if destination == user_destination
-                @@all << Flight.create(origin: origin, destination: destination, departure: departure_time, arrival: arrival_time)
+                @@all << Flight.create(origin: origin, destination: destination, departure: departure_time, arrival: arrival_time, status: status)
             end
 
             # puts "#{i}. #{flight_num} \n Departs from #{origin} at #{departure_time} \n Arrives at #{destination} at #{arrival_time}"
