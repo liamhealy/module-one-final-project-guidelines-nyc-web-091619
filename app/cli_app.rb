@@ -245,13 +245,13 @@ class CliApp
         when "View all flights"
             see_all_flights
         when "View all travelers"
-            list_all_travelers
+            see_all_travelers
         when "Update Flight Information"
             # update_flights
         when "Cancel Flights"
-            # cancel_flights
+            cancel_flights
         when "Ban Passengers"
-            # ban_passenger
+            ban_passengers
         when "Return Home"
             system "clear"
             run 
@@ -263,7 +263,6 @@ class CliApp
     end
 
     def see_all_flights
-
         all_flights = Flight.all.map do |flight|
             "- Flight Id: #{flight.id}, Origin: #{flight.origin}, Destination: #{flight.destination}"
         end
@@ -274,10 +273,30 @@ class CliApp
         end
     end
 
-    # def list_all_travelers 
-    #     travelers = Traveler.all
-    #     puts travelers
-    # end
+    def see_all_travelers 
+            all_travelers = Traveler.all.map do |traveler|
+            "-Traveler Id: #{traveler.id}, Name: #{traveler.name}-"
+            end
+            prompt = TTY::Prompt.new
+            if all_travelers.count != 0
+            prompt.select("Travelers:", all_travelers)
+            end
+        
+            travelers = Traveler.all
+            puts travelers
+    end
+
+    def cancel_flights
+        prompt = TTY::Prompt.new
+        cancel = prompt.select("Please Select the Flight to be canceled:", Flight.all)
+        cancel.delete
+    end
+
+    def ban_passengers
+        prompt = TTY::Prompt.new
+        ban = prompt.select("Please Select the Passenger to be banned:", Traveler.all)
+        ban.delete
+    end
 
 
 
