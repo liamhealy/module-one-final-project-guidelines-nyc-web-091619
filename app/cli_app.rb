@@ -155,13 +155,15 @@ class CliApp
     
     #(Delete) Removing a ticket the user bought
     def return_ticket
-        my_tickets = @current_traveler.flights.map do |ticket|
-            ticket
+        ticket_hash = {}
+        my_tickets = @current_traveler.tickets.map do |ticket|
+            flight = ticket.flight
+            ticket_hash[ticket] = "Ticket id: #{ticket.id}, Going to: #{flight.destination}"
         end
         prompt = TTY::Prompt.new
         if my_tickets.count > 0
-            ticket = prompt.select("Select the ticket you would like to return:", @current_traveler.tickets)
-            Ticket.delete(ticket)
+            ticket = prompt.select("Select the ticket you would like to return:", ticket_hash.values)
+            Ticket.delete(ticket_hash.key(ticket))
         else
             option = "Go Back"
             prompt.select("You currently do not own any tickets.", option)
