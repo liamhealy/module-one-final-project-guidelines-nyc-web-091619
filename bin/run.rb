@@ -1,5 +1,11 @@
 require_relative '../config/environment'
+require 'tty-prompt'
+require 'tty-font'
 
 
 
-puts "HELLO WORLD"
+
+my_app = CliApp.new
+my_app.run
+
+# binding.pry
