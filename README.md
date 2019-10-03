@@ -8,13 +8,13 @@ Our domain model demonstrates the relationship between travelers and their fligh
 
 Traveler:
 - Name
-- SSN last 4 digits
 
 Flight:
 - Origin
 - Destination
 - Departure Time
 - Arrival Time
+- Status
 
 The Traveler and their Flight are connected by the purchase of a ticket.
  
