@@ -1,7 +1,7 @@
 # Flatiron School
 ## Module one project
 
-### User -> Ticket -> Flight
+### Traveler -> Ticket -> Flight
 
 Our domain model demonstrates the relationship between travelers and their flights through the tickets they purchase.
 
