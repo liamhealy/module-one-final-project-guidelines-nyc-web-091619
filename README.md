@@ -1,6 +1,10 @@
 # GotFlights?
 ## Flatiron School - Module one project
 
+
+(https://media3.giphy.com/media/3osxYsiHeLETBPGyTC/source.gif)
+
+
 ### Traveler -> Ticket -> Flight
 
 Our domain model demonstrates the relationship between travelers and their flights through the tickets they purchase.
