@@ -5,7 +5,7 @@
 
 Our domain model demonstrates the relationship between travelers and their flights through the tickets they purchase.
 
-Traveler:
+
 | id        | name       |
 | ----------|:----------:|
 |           |            |
