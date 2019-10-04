@@ -32,3 +32,4 @@ Gems we included in our application:
 * [TTY-Font](https://github.com/piotrmurach/tty-font)
 * [rest-client](https://github.com/rest-client/rest-client)
 * [JSON](https://github.com/flori/json)
+* [rake](https://github.com/ruby/rake)
