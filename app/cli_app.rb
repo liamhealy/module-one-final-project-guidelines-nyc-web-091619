@@ -2,6 +2,7 @@ require_relative 'flight_api'
 
 class CliApp
     
+    
     def run
         system "clear"
         welcome_message
@@ -14,7 +15,7 @@ class CliApp
             admin_menu
         end 
     end
-    
+
     def welcome_message
         create_pastel("GotFlights?")
         puts "Welcome to Got Flights!"
