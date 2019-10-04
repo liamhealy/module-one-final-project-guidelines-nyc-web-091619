@@ -50,6 +50,4 @@ Gems:
 
 API:
 
-To populate each field in our flights table we used the 'Flight Stats' API.
-
-[Flight Stats](https://developer.flightstats.com)
+To populate each field in our flights table we used the [Flight Stats](https://developer.flightstats.com) API.
