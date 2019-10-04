@@ -33,7 +33,7 @@ The Traveler and their Flight are connected by the purchase of a ticket.
 1. As a traveler, I should be able to enter my name and view flights that I have purchased a ticket for.
 2. As a traveler, I should be able to specify a destination, and purchase a ticket for an available flight.
 3. As an airport administrator, I should be able to view all travelers that have purchased tickets for flights.
-4. As an airport administrator, I should be able view, update or cancel flights when necessary.
+4. As an airport administrator, I should be able to view, update or cancel flights.
 
 ### Gems and APIs we included in our application:
 
