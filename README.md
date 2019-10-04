@@ -28,8 +28,11 @@ Ticket:
 4. As an airport administrator, I should be able to cancel my flights when necessary.
 
 Gems we included in our application:
-* [TTY-Prompt](https://github.com/piotrmurach/tty-prompt#26-menu)
+1. [TTY-Prompt](https://github.com/piotrmurach/tty-prompt#26-menu)
 * [TTY-Font](https://github.com/piotrmurach/tty-font)
 * [rest-client](https://github.com/rest-client/rest-client)
 * [JSON](https://github.com/flori/json)
 * [rake](https://github.com/ruby/rake)
+* [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord)
+* [pry](https://github.com/pry/pry)
+* [sqlite3](https://github.com/sparklemotion/sqlite3-ruby)
