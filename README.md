@@ -46,4 +46,7 @@ Gems we included in our application:
 * [sqlite3](https://github.com/sparklemotion/sqlite3-ruby)
 
 API:
+
+To populate each field in our flights table we used the 'Flight Stats' API.
+
 [Flight Stats](https://developer.flightstats.com)
