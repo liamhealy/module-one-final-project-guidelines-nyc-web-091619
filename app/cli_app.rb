@@ -47,6 +47,7 @@ class CliApp
     def traveler_menu
         update_traveler
         system "clear"
+        puts "Signed in as: #{@current_traveler.name}"
         create_pastel("Menu:")
         action = get_action
         execute_action(action)
@@ -188,6 +189,7 @@ class CliApp
     def admin_menu
         # enter_admin_password
         system "clear"
+        puts "Signed in as: Airport Admin"
         create_pastel("Menu:")
         action = get_admin
         admin_action(action)
