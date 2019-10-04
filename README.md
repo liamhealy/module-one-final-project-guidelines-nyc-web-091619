@@ -1,4 +1,4 @@
-# Flatiron School
+# GotFlights?
 ## Module one project
 
 ### Traveler -> Ticket -> Flight
