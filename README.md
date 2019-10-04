@@ -2,7 +2,7 @@
 ## Flatiron School - Module one project
 
 
-(https://media3.giphy.com/media/3osxYsiHeLETBPGyTC/source.gif)
+![alt text](https://media3.giphy.com/media/3osxYsiHeLETBPGyTC/source.gif)
 
 
 ### Traveler -> Ticket -> Flight
