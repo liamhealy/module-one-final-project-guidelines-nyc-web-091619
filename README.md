@@ -16,11 +16,6 @@ Traveler:
 
 
 Flight:
-- Origin
-- Destination
-- Departure Time
-- Arrival Time
-- Status
 
 id          | origin        | destination   | departure  |   arrival   |   status  |
 ----------- | ------------- |:-------------:| ----------:| -----------:| ---------:|
@@ -31,8 +26,10 @@ id          | origin        | destination   | departure  |   arrival   |   statu
 The Traveler and their Flight are connected by the purchase of a ticket.
  
 Ticket: 
-- traveler_id
-- flight_id
+
+| id        | traveler_id     | flight_id |
+| ----------|:---------------:|:---------:|
+| `integer` | `integer`       | `integer` |
  
 ### User Stories:
 1. As a traveler, I should be able to enter my name and view flights that I have purchased a ticket for.
