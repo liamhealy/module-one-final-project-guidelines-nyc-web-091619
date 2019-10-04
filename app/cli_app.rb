@@ -63,7 +63,7 @@ class CliApp
     end
     
     def get_action
-        action = create_select_prompt("Menu Options:", ["View my flights", "Purchase a flight ticket", "Return a ticket", "Return Home", "Exit GotFlights"])
+        action = create_select_prompt("Menu Options:", ["View my flights", "Purchase a flight ticket", "Return a ticket", "Update my information", "Return Home", "Exit GotFlights"])
     end
 
     def purchase_menu
@@ -97,6 +97,8 @@ class CliApp
             purchase_menu
         when "Return a ticket"
             return_ticket
+        when "Update my information"
+            update_traveler_information
         when "Return Home"
             system "clear"
             run 
@@ -122,7 +124,15 @@ class CliApp
         end
     end
 
-    
+    def update_traveler_information
+        prompt = TTY::Prompt.new
+        choice = prompt.select("Would you like to change your name?", %w(Yes No))
+        case choice
+        when "Yes"
+            new_name = prompt.ask("Enter your new name here:")
+            @current_traveler.update(name: new_name)
+        end        
+    end
     
     # (Read) List all of the flights in existence
     def list_all_flights
@@ -183,7 +193,7 @@ class CliApp
     end
 
     def get_admin
-        action = create_select_prompt("Menu Options:", ["View all flights", "View all travelers", "Update Flight Information", "Cancel Flights", "Ban Passengers", "Return Home", "Exit GotFlights"])
+        action = create_select_prompt("Menu Options:", ["View all flights", "View all travelers", "Create A New Flight", "Update Flight Information", "Cancel Flights", "Ban Passengers", "Return Home", "Exit GotFlights"])
     end
     
     def enter_admin_password
@@ -215,6 +225,8 @@ class CliApp
             see_all_travelers
         when "Update Flight Information"
             update_flights_status
+        when "Create A New Flight"
+            create_new_flight
         when "Cancel Flights"
             cancel_flights
         when "Ban Passengers"
@@ -250,6 +262,14 @@ class CliApp
         end
         travelers = Traveler.all
         puts travelers
+    end
+
+    def create_new_flight
+        prompt = TTY::Prompt.new
+        dest = prompt.ask("What is the destination of this flight? (Must be in the form of 3-letter airport code)")
+        departure_time = prompt.ask("What time will the flight depart from JFK? (YYYY-MM-DD HH:MM:SS format)")
+        arrival_time = prompt.ask("What time will the flight arrive at '#{dest}'? (Same format as departure time above)")
+        Flight.create(origin: "JFK", destination: dest, departure: departure_time, arrival: arrival_time, status: "On-Time")
     end
 
     def update_flights_status
