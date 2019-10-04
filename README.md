@@ -22,7 +22,7 @@ Flight:
 - Arrival Time
 - Status
 
-id          | origin        | destination   | departure  | arrival     | status    |
+id          | origin        | destination   | departure  |   arrival   |   status  |
 ----------- | ------------- |:-------------:| ----------:| -----------:| ---------:|
 `integer`   | `string`      | `string`      | `datetime` | `datetime`  | `string`  |
 
