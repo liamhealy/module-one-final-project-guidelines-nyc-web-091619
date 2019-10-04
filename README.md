@@ -29,4 +29,4 @@ Ticket:
 
 Gems we included in our application:
 * [TTY-Prompt](https://github.com/piotrmurach/tty-prompt#26-menu)
-* [TTY-Font] (https://github.com/piotrmurach/tty-font)
+* [TTY-Font](https://github.com/piotrmurach/tty-font)
