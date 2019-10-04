@@ -44,3 +44,6 @@ Gems we included in our application:
 * [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord)
 * [pry](https://github.com/pry/pry)
 * [sqlite3](https://github.com/sparklemotion/sqlite3-ruby)
+
+API:
+[Flight Stats](https://developer.flightstats.com)
