@@ -35,7 +35,10 @@ The Traveler and their Flight are connected by the purchase of a ticket.
 3. As an airport administrator, I should be able to view all travelers that have purchased tickets for flights.
 4. As an airport administrator, I should be able to cancel my flights when necessary.
 
-Gems we included in our application:
+### Gems and APIs we included in our application:
+
+Gems:
+
 * [TTY-Prompt](https://github.com/piotrmurach/tty-prompt#26-menu)
 * [TTY-Font](https://github.com/piotrmurach/tty-font)
 * [rest-client](https://github.com/rest-client/rest-client)
