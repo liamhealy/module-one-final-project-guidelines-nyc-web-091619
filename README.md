@@ -11,9 +11,7 @@ Traveler:
 | ----------|:----------:|
 | `integer` | `string`   |
 
-:has many tickets
 
-:has many flights through tickets
 
 Flight:
 
