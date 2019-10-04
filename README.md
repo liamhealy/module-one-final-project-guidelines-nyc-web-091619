@@ -8,6 +8,7 @@ Our domain model demonstrates the relationship between travelers and their fligh
 Traveler:
 | id        | name       |
 | ----------|:----------:|
+|           |            |
 
 
 
