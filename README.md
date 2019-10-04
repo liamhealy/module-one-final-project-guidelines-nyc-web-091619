@@ -22,9 +22,9 @@ Flight:
 - Arrival Time
 - Status
 
-| origin        | destination   | departure  | arrival | status |
-| ------------- |:-------------:| ----------:| -------:| ------:|
-| string        | string        | datetime   | datetime| string |
+| origin        | destination   | departure  | arrival     | status    |
+| ------------- |:-------------:| ----------:| -----------:| ---------:|
+| `string`      | `string`      | `datetime` | `datetime`  | `string`  |
 
 
 
