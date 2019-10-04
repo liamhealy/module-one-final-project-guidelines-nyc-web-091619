@@ -13,8 +13,6 @@ Traveler:
 
 
 
-
-
 Flight:
 
 id          | origin        | destination   | departure  |   arrival   |   status  |
@@ -22,15 +20,15 @@ id          | origin        | destination   | departure  |   arrival   |   statu
 `integer`   | `string`      | `string`      | `datetime` | `datetime`  | `string`  |
 
 
-
-The Traveler and their Flight are connected by the purchase of a ticket.
  
 Ticket: 
 
 | id        | traveler_id     | flight_id |
 | ----------|:---------------:|:---------:|
 | `integer` | `integer`       | `integer` |
- 
+
+The Traveler and their Flight are connected by the purchase of a ticket.
+
 ### User Stories:
 1. As a traveler, I should be able to enter my name and view flights that I have purchased a ticket for.
 2. As a traveler, I should be able to specify a destination, and purchase a ticket for an available flight.
