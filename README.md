@@ -22,11 +22,11 @@ Flight:
 - Arrival Time
 - Status
 
-| origin        | destination   | departure  | arrival |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| origin        | destination   | departure  | arrival | status |
+| ------------- |:-------------:| ----------:| -------:| ------:|
+| string        | string        | datetime   | datetime| string |
+
+
 
 The Traveler and their Flight are connected by the purchase of a ticket.
  
